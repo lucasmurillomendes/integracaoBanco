@@ -34,8 +34,7 @@ public class CategoriaDAO implements Dao<Integer, Categoria> {
             ResultSet rs = query.getGeneratedKeys();
 
             if (rs.next()) {
-                int id = rs.getInt(1);
-                entity.setId(id);
+                entity.setId(rs.getInt(1));
             }
 
             query.close();

@@ -38,8 +38,7 @@ public class MarcaDAO implements Dao<Integer, Marca> {
             ResultSet rs = query.getGeneratedKeys();
 
             if (rs.next()) {
-                int id = rs.getInt(1);
-                entity.setId(id);
+                entity.setId(rs.getInt(1));
             }
 
             query.close();

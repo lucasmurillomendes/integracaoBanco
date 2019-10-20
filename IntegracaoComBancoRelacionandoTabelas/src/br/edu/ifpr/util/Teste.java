@@ -18,9 +18,7 @@ import br.edu.ifpr.dao.MunicipioDAO;
 import br.edu.ifpr.dao.ProprietarioDAO;
 import br.edu.ifpr.dao.VeiculoDAO;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.util.Calendar;
 
 /**
  *
@@ -29,31 +27,35 @@ import java.util.Calendar;
 public class Teste {
 
     public static void main(String[] args) throws SQLException {
-            java.util.Date data = new java.util.Date();
-        java.sql.Date dataSql = new java.sql.Date(data.getTime());
-        
-        Estado estado = new Estado(0, "São Paulo", "SP");
-        Municipio municipio = new Municipio(0, "Osasco", estado);
-       Marca marca = new Marca(0, "Ford");
-      Categoria categoria = new Categoria(0, "Utilitários");
-      Proprietario proprietario = new Proprietario(0, "Mario Mendes", "Rua Paraná, 638",
-              "Centro", "10899736912", "988461691", "133355782", dataSql);
-      Veiculo veiculo = new Veiculo(0, "DAW-9852", dataSql, categoria, proprietario, marca, municipio);
-
         Connection con = ConnectionFactory.createConnectionToMySQL();
 
-       EstadoDAO estDAO = new EstadoDAO(con);
+        java.util.Date data = new java.util.Date();
+        java.sql.Date dataSql = new java.sql.Date(data.getTime());
+       
+        Estado estado = new Estado(0, "São Paulo", "SP");
+        EstadoDAO estDAO = new EstadoDAO(con);
+       // estDAO.create(estado);
+
+        Municipio municipio = new Municipio(0, "Osasco", estado);
         MunicipioDAO munDAO = new MunicipioDAO(con);
+      munDAO.create(municipio);
+
+        Marca marca = new Marca(0, "Ford");
         MarcaDAO marcDAO = new MarcaDAO(con);
+        //marcDAO.create(marca);
+
+        Categoria categoria = new Categoria(0, "Utilitários");
         CategoriaDAO catDAO = new CategoriaDAO(con);
+        //catDAO.create(categoria);
+
+        Proprietario proprietario = new Proprietario(0, "Mario Mendes", "Rua Paraná, 638",
+                "Centro", "10899736912", "988461691", "133355782", dataSql);
         ProprietarioDAO propDAO = new ProprietarioDAO(con);
+        //propDAO.create(proprietario); 
+
+        Veiculo veiculo = new Veiculo(0, "DAW-9852", dataSql, categoria, proprietario, marca, municipio);
         VeiculoDAO veicDAO = new VeiculoDAO(con);
-      // estDAO.create(estado);
-    //  munDAO.create(municipio);
-     //  marcDAO.create(marca);
-     //  catDAO.create(categoria);
-     // propDAO.create(proprietario);
-      veicDAO.create(veiculo);
+      //veicDAO.create(veiculo);
 
         ///Municipio m = munDAO.retrieve(1);
         //  System.out.println("id : " + m.getId());

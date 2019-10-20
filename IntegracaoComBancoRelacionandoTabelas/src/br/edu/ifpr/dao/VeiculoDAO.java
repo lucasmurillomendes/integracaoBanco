@@ -36,9 +36,9 @@ public class VeiculoDAO implements Dao<Integer, Veiculo> {
                 + "Proprietario_id, Marca_id, Municipio_id) VALUES (?,?,?,?,?,?)";
 
         if (entity.getCategoria().getId() == 0
-                || entity.getPropietario().getId() == 0
-                || entity.getMarca().getId() == 0
-                || entity.getMunicipio().getId() == 0) {
+                && entity.getPropietario().getId() == 0
+                && entity.getMarca().getId() == 0
+                && entity.getMunicipio().getId() == 0) {
 
             //Verifica e obriga a ter as fks para ter um Veiculo
             CategoriaDAO catDao = new CategoriaDAO(con);
@@ -68,8 +68,7 @@ public class VeiculoDAO implements Dao<Integer, Veiculo> {
             ResultSet rs = query.getGeneratedKeys();
 
             if (rs.next()) {
-                int id = rs.getInt(1);
-                entity.setId(id);
+                 entity.setId(rs.getInt(1));
             }
 
             query.close();
