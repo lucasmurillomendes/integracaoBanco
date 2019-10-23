@@ -47,7 +47,7 @@ public class MunicipioDAO implements Dao<Integer, Municipio> {
 
             if (rs.next()) {
                 entity.setId(rs.getInt(1));
-            }
+            } 
 
             query.close();
 

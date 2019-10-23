@@ -32,31 +32,33 @@ public class Teste {
         java.util.Date data = new java.util.Date();
         java.sql.Date dataSql = new java.sql.Date(data.getTime());
        
+        System.out.println(dataSql);
         Estado estado = new Estado(0, "São Paulo", "SP");
         EstadoDAO estDAO = new EstadoDAO(con);
        // estDAO.create(estado);
 
-        Municipio municipio = new Municipio(0, "Osasco", estado);
+        Municipio municipio = new Municipio(0, "Osasco", estDAO.retrieve(1));
         MunicipioDAO munDAO = new MunicipioDAO(con);
-      munDAO.create(municipio);
+      //  munDAO.create(municipio);
 
         Marca marca = new Marca(0, "Ford");
         MarcaDAO marcDAO = new MarcaDAO(con);
-        //marcDAO.create(marca);
+       // marcDAO.create(marca);
 
         Categoria categoria = new Categoria(0, "Utilitários");
         CategoriaDAO catDAO = new CategoriaDAO(con);
-        //catDAO.create(categoria);
+      //  catDAO.create(categoria);
 
         Proprietario proprietario = new Proprietario(0, "Mario Mendes", "Rua Paraná, 638",
                 "Centro", "10899736912", "988461691", "133355782", dataSql);
         ProprietarioDAO propDAO = new ProprietarioDAO(con);
-        //propDAO.create(proprietario); 
+      //  propDAO.create(proprietario); 
 
-        Veiculo veiculo = new Veiculo(0, "DAW-9852", dataSql, categoria, proprietario, marca, municipio);
+        Veiculo veiculo = new Veiculo(0, "DAW-9852", dataSql, catDAO.retrieve(1), propDAO.retrieve(1), 
+                marcDAO.retrieve(1), munDAO.retrieve(1));
         VeiculoDAO veicDAO = new VeiculoDAO(con);
-      //veicDAO.create(veiculo);
-
+      // veicDAO.create(veiculo);
+        
         ///Municipio m = munDAO.retrieve(1);
         //  System.out.println("id : " + m.getId());
         //  System.out.println("Nome : " + m.getNome());

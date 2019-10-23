@@ -140,7 +140,20 @@ public class MarcaDAO implements Dao<Integer, Marca> {
 
         return marcas;
     }
+     public Integer retornaQTD() throws SQLException {
+        String sql = "SELECT id, descricao FROM Marca";
 
+        // Associa conexão
+        Statement query = con.createStatement();
+        // Executa SQL
+        ResultSet rs = query.executeQuery(sql);
+        int i = 0;
+        while (rs.next()) {
+            i = rs.getRow();
+        }
+
+        return i + 1;
+    }
 
 
 }

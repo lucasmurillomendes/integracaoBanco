@@ -129,5 +129,19 @@ public class CategoriaDAO implements Dao<Integer, Categoria> {
         
         return categorias;
     }
+    
+     public Integer retornaQTD() throws SQLException {
+        String sql = "SELECT id, descricao FROM Categoria";
 
+        // Associa conexão
+        Statement query = con.createStatement();
+        // Executa SQL
+        ResultSet rs = query.executeQuery(sql);
+        int i = 0;
+        while (rs.next()) {
+            i = rs.getRow();
+        }
+
+        return i + 1;
+    }
 }
